@@ -69,3 +69,22 @@ public:
         return canPlace >= n;
     }
 };
+贪心
+贪心策略，从左到右遍历，能种花的条件是：
+
+当前位置是0
+且 前一位置是0或边界
+且 后一位置是0或边界
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        int size = flowerbed.size();
+        for(int i=0; i<size; i++) {
+            if (flowerbed[i]==0 && (i==0||flowerbed[i-1]==0) && (i==size-1||flowerbed[i+1]==0)) {
+                n--;
+                flowerbed[i] = 1;
+            }
+        }
+        return n <= 0;
+    }
+};
